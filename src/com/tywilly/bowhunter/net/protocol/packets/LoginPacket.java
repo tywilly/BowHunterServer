@@ -21,7 +21,7 @@ public class LoginPacket extends Packet {
 	public void onRecieve(byte id, String payload, ClientConnection con) {
 		// TODO Auto-generated method stub
 
-		System.out.println("User " + payload + " loged in!");
+		System.out.println("User " + payload + " logged in!");
 
 		String[] payloadS = payload.split(" ");
 

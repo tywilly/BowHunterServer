@@ -13,9 +13,13 @@ public class Player extends Entity {
 	private int health = 100;
 
 	private int exp = 0;
-	
-	public Player() {
-		
+
+	private ClientConnection con;
+
+	private long tick = 0;
+
+	public Player(ClientConnection con) {
+		this.con = con;
 	}
 
 	public String getUsername() {
@@ -30,43 +34,58 @@ public class Player extends Entity {
 		this.health = health;
 
 		if (this.health > 0) {
-			Server.getClientConnectionByUsername(getUsername()).sendPacket(
-					new SetHealthPacket(getUUID(), getHealth()));
+			Server.getClientConnectionByUsername(getUsername()).sendPacket(new SetHealthPacket(getUUID(), getHealth()));
 		} else {
 			// Die
 			onDeath();
 		}
 	}
-	
+
 	public int getHealth() {
 		return health;
 	}
-	
-	private void onDeath(){
-		
-		for(int i=0;i<Server.clients.size();i++){
+
+	private void onDeath() {
+
+		for (int i = 0; i < Server.clients.size(); i++) {
 			ClientConnection cli = Server.clients.get(i);
-			
+
 			cli.sendPacket(new MovePacket(getUUID(), 200 + " " + 200));
 		}
-		
+
 		this.setHealth(100);
 		this.setExp(0);
-		
+
 	}
 
-	public void setExp(int exp){
+	public void setExp(int exp) {
 		this.exp = exp;
 	}
-	
-	public int getExp(){
+
+	public int getExp() {
 		return exp;
 	}
-	
+
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
+		if (tick >= Long.MAX_VALUE) {
+			tick = -1;
+		}
+
+		if (tick % 180 == 0) {
+
+			if (!con.isHeartBeatSent()) {
+				con.sendHeartBeat();
+			}else{
+				con.setAlive(false);
+				con.disconnect("Client unresponsive!");
+			}
+		}
+
+		tick++;
+
 	}
 
 }

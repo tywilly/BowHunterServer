@@ -23,6 +23,10 @@ public abstract class Packet {
 		return packetId;
 	}
 
+	public void setPayload(String payload){
+		this.payload = payload;
+	}
+	
 	public String getPayload(){
 		return payload;
 	}
