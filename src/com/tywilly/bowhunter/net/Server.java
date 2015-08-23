@@ -82,7 +82,7 @@ public class Server {
 	public void sendPacket(Packet pack, ClientConnection cli) {
 		try {
 			sendPacket.setData(pack.getData().getBytes());
-			sendPacket.setLength(pack.getData().getBytes().length);
+			//sendPacket.setLength(pack.getData().getBytes().length);
 			sendPacket.setSocketAddress(cli.getAddress());
 
 			sock.send(sendPacket);

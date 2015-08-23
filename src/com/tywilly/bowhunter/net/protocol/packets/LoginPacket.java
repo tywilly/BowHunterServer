@@ -28,7 +28,7 @@ public class LoginPacket extends Packet {
 		con.getPlayer().setUsername(payloadS[0]);
 
 		PlayerLoader.loadPlayer(con.getPlayer());
-
+		
 		con.getPlayer().setUUID(Entity.generateUUID());
 
 		UpdateThread.ents.add(con.getPlayer());

@@ -27,7 +27,7 @@ public class ClientConnection {
 		this.server = server;
 		this.address = address;
 	}
-
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -61,6 +61,7 @@ public class ClientConnection {
 	}
 	
 	public void receivePacket(byte id, String data){
+		System.out.println(data);
 		PacketManager.getPacket(id).onRecieve(id, data, this);
 	}
 	
@@ -79,6 +80,7 @@ public class ClientConnection {
 	}
 	
 	public void sendPacket(Packet pack) {
+		System.out.println(pack.getPayload());
 		server.sendPacket(pack, this);
 	}
 

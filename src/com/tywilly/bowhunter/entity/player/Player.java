@@ -74,14 +74,21 @@ public class Player extends Entity {
 			tick = -1;
 		}
 
-		if (tick % 180 == 0) {
-
-			if (!con.isHeartBeatSent()) {
+		
+		if(System.currentTimeMillis() - con.getLastHeartBeatTime() >= 5000 || con.getLastHeartBeatTime() <= 0){
+			
+			if(!con.isHeartBeatSent()){
 				con.sendHeartBeat();
 			}else{
-				con.setAlive(false);
-				con.disconnect("Client unresponsive!");
+				con.disconnect("Client Timedout!");
 			}
+			
+		}else if(System.currentTimeMillis() - con.getLastHeartBeatTime() >= 4000){
+			
+			if(con.isHeartBeatSent()){
+				con.disconnect("Client Timedout!");
+			}
+			
 		}
 
 		tick++;

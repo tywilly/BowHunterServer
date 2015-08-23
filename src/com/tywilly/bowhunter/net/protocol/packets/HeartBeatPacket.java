@@ -9,13 +9,11 @@ public class HeartBeatPacket extends Packet {
 	public HeartBeatPacket() {
 		super((byte) 18, "");
 		
+		String s = "";
+		
 		Random r = new Random();
 		
-		byte[] b = new byte[16];
-		
-		r.nextBytes(b);
-		
-		String s = new String(b);
+		s += r.nextInt(999999);
 		
 		this.setPayload(s);
 		
@@ -30,7 +28,6 @@ public class HeartBeatPacket extends Packet {
 			connection.setHeartBeatSent(false);
 		}else{
 			connection.setAlive(false);
-			//connection.disconnect();
 		}
 		
 	}
