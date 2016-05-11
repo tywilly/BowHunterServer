@@ -1,10 +1,11 @@
 package com.tywilly.bowhunter.net.protocol;
 
+import java.util.ArrayList;
+
 import com.tywilly.bowhunter.net.protocol.packets.ActionPacket;
 import com.tywilly.bowhunter.net.protocol.packets.ChatPacket;
 import com.tywilly.bowhunter.net.protocol.packets.DespawnEntityPacket;
 import com.tywilly.bowhunter.net.protocol.packets.DisconnectPacket;
-import com.tywilly.bowhunter.net.protocol.packets.HeartBeatPacket;
 import com.tywilly.bowhunter.net.protocol.packets.LoginPacket;
 import com.tywilly.bowhunter.net.protocol.packets.MovePacket;
 import com.tywilly.bowhunter.net.protocol.packets.Packet;
@@ -12,6 +13,8 @@ import com.tywilly.bowhunter.net.protocol.packets.Packet;
 public class PacketManager {
 
 	private static Packet[] packets = new Packet[256];
+	
+	private ArrayList<Packet> awaitingPackets = new ArrayList<Packet>();
 	
 	public PacketManager(){
 		
@@ -26,12 +29,18 @@ public class PacketManager {
 		
 		packets[11] = new ChatPacket();
 		
-		packets[18] = new HeartBeatPacket();
-		
 	}
 	
 	public static Packet getPacket(byte id){
 		return packets[id];
+	}
+	
+	public void queuePacket(Packet packet){
+		awaitingPackets.add(packet);
+	}
+	
+	public ArrayList<Packet> getQueue(){
+		return awaitingPackets;
 	}
 	
 }

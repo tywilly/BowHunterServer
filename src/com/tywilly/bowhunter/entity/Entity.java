@@ -1,6 +1,5 @@
 package com.tywilly.bowhunter.entity;
 
-
 public abstract class Entity {
 
 	String UUID = "";

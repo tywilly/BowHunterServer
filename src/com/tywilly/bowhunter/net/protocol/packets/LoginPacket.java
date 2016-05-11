@@ -21,14 +21,14 @@ public class LoginPacket extends Packet {
 	public void onRecieve(byte id, String payload, ClientConnection con) {
 		// TODO Auto-generated method stub
 
-		System.out.println("User " + payload + " logged in!");
+		System.out.println("User " + payload + " loged in!");
 
 		String[] payloadS = payload.split(" ");
 
 		con.getPlayer().setUsername(payloadS[0]);
 
 		PlayerLoader.loadPlayer(con.getPlayer());
-		
+
 		con.getPlayer().setUUID(Entity.generateUUID());
 
 		UpdateThread.ents.add(con.getPlayer());
