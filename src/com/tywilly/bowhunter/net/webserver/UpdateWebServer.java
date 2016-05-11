@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.jibble.simplewebserver.SimpleWebServer;
 
+import com.tywilly.bowhunter.Driver;
+
 public class UpdateWebServer {
 	
 	SimpleWebServer webServer;
@@ -12,8 +14,8 @@ public class UpdateWebServer {
 	public UpdateWebServer(){
 		
 		try {
-			System.out.println("WebServer: Starting!");
-			webServer = new SimpleWebServer(new File("./assets"), 8080);
+			System.out.println("WebServer: Starting on port " + Driver.getConfig().getInt("server.update.port") + "!");
+			webServer = new SimpleWebServer(new File("./assets"), Driver.getConfig().getInt("server.update.port"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

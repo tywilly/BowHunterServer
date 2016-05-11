@@ -12,6 +12,8 @@ public class Driver {
 
 	UpdateThread updateThread;
 
+	UpdateWebServer updateServer;
+	
 	public static World world = new World("main");
 	
 	static ConfigFile config = new ConfigFile("config.dat");
@@ -21,6 +23,8 @@ public class Driver {
 		System.out.println("Loading config...");
 		
 		config.load();
+		
+		updateServer = new UpdateWebServer();
 		
 		System.out.println("Loading world...");
 		
@@ -44,8 +48,6 @@ public class Driver {
 	public static void main(String[] args) {
 
 		System.out.println("Starting server...");
-
-		UpdateWebServer updateServer = new UpdateWebServer();
 		
 		new Driver();
 
