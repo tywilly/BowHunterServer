@@ -2,6 +2,7 @@ package com.tywilly.bowhunter;
 
 import com.tywilly.bowhunter.config.ConfigFile;
 import com.tywilly.bowhunter.net.Server;
+import com.tywilly.bowhunter.net.webserver.UpdateWebServer;
 import com.tywilly.bowhunter.update.UpdateThread;
 import com.tywilly.bowhunter.world.World;
 
@@ -44,7 +45,9 @@ public class Driver {
 
 		System.out.println("Starting server...");
 
-		Driver driver = new Driver();
+		UpdateWebServer updateServer = new UpdateWebServer();
+		
+		new Driver();
 
 	}
 
