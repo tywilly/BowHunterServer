@@ -104,27 +104,27 @@ public class Player extends Entity {
 
 		}
 
-		if (System.currentTimeMillis() - con.getLastHeartBeatTime() >= 5000 || con.getLastHeartBeatTime() <= 0) {
-
-			if (!con.isHeartBeatSent()) {
-
-				con.sendHeartBeat();
-
-			} else {
-
-				con.disconnect("Client Timedout!");
-
-			}
-
-		} else if (System.currentTimeMillis() - con.getLastHeartBeatTime() >= 4000) {
-
-			if (con.isHeartBeatSent()) {
-
-				con.disconnect("Client Timedout!");
-
-			}
-
-		}
+//		if (System.currentTimeMillis() - con.getLastHeartBeatTime() >= 5000 || con.getLastHeartBeatTime() <= 0) {
+//
+//			if (!con.isHeartBeatSent()) {
+//
+//				con.sendHeartBeat();
+//
+//			} else {
+//
+//				con.disconnect("Client Timedout!");
+//
+//			}
+//
+//		} else if (System.currentTimeMillis() - con.getLastHeartBeatTime() >= 4000) {
+//
+//			if (con.isHeartBeatSent()) {
+//
+//				con.disconnect("Client Timedout!");
+//
+//			}
+//
+//		}
 
 		tick++;
 
