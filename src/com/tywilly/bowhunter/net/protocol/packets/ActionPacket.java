@@ -36,7 +36,7 @@ public class ActionPacket extends Packet {
 			for (int i = 0; i < Server.clients.size(); i++) {
 				ClientConnection cli = Server.clients.get(i);
 
-				cli.sendPacket(new SpawnEntityPacket(arrow.getUUID(), 3, arrow
+				cli.sendPacket(new SpawnEntityPacket(arrow.getUUID(), "assets/weapons/bullets/arrow_right.png", arrow
 						.getXDirection() + " " + arrow.getYDirection(), 0));
 
 			}

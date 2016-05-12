@@ -4,6 +4,8 @@ public abstract class Entity {
 
 	String UUID = "";
 	
+	//private String texturePath = "";
+	
 	private float xLocation = 0;
 	private float yLocation = 0;
 	
