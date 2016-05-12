@@ -22,7 +22,7 @@ public class World {
 	
 	public World(String worldName){
 		this.worldName = worldName;
-		worldFile = new ConfigFile("world" + File.separator + worldName + File.separator + worldName + ".dat");
+		worldFile = new ConfigFile("assets" + File.separator + "world" + File.separator + worldName + ".dat");
 		loadConfig();
 		
 		worldTileType = new byte[height][width - 1];
@@ -43,7 +43,7 @@ public class World {
 	
 	public void loadWorld(){
 		
-		File worldFile = new File("world" + File.separator + worldName + File.separator + worldName + ".world");
+		File worldFile = new File("assets" + File.separator + "world" + File.separator + worldName + ".world");
 		
 		try {
 			Scanner scan = new Scanner(worldFile);

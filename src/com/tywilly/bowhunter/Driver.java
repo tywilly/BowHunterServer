@@ -1,7 +1,10 @@
 package com.tywilly.bowhunter;
 
+import java.io.IOException;
+
 import com.tywilly.bowhunter.config.ConfigFile;
 import com.tywilly.bowhunter.net.Server;
+import com.tywilly.bowhunter.net.webserver.UpdateFileParser;
 import com.tywilly.bowhunter.net.webserver.UpdateWebServer;
 import com.tywilly.bowhunter.update.UpdateThread;
 import com.tywilly.bowhunter.world.World;
@@ -14,7 +17,7 @@ public class Driver {
 
 	UpdateWebServer updateServer;
 	
-	public static World world = new World("main");
+	public static World world = new World("default");
 	
 	static ConfigFile config = new ConfigFile("config.dat");
 	
@@ -23,6 +26,15 @@ public class Driver {
 		System.out.println("Loading config...");
 		
 		config.load();
+		
+		UpdateFileParser ufp;
+		try {
+			ufp = new UpdateFileParser();
+			ufp.generateRevisionFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		updateServer = new UpdateWebServer();
 		
